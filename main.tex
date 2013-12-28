@@ -94,15 +94,20 @@ With increasing demand for new features and user experiences developers and desi
 Smartphones’ and tablets’ high performance graphics processors now easily handle 3D visualization and there is no shortage in memory either. 
 In the past few years there has been a lot of development in the field of 3D visualisation in embedded systems e.g. Android platform which has given life to many frameworks or APIs like OpenGL ES, WebGL, three.js or many others.
 
-% subsection preface (end)
 
 \subsection{OpenGL ES}
 \textbf{OpenGL ES for Embedded Systems} is a subset of \textbf{OpenGL} API for rendering 2D and 3D graphics.
 It has been designed to be used with embedded systems like smartphones, tablets or video consoles.
 It's most recent version at the time of writing of this paper is 3.0 and it is based on OpenGL 4.3 - which means it provides full compatibility with it. 
-Version 3.0 is also backward compatible with OpenGL ES 2.0 enabling developers to add new video features later on in the development process.
+Version 3.0 is also backward compatible with OpenGL ES 2.0 enabling developers to add new video processing features later on in the development process.
+
+
+\subsection{WebGL}
+\textbf{WebGL} is a cross platform, web standard JavaScript API to render 2D and 3D content in any compatible web browser without use of any external plugins like e.g. Adobe Flash.
+
 
 %============================================================
+
 
 \pagebreak[4]
 \section{Simple things first}
@@ -116,7 +121,7 @@ Finally, \ref{sec:list} demonstrates lists.
 %------------------------------------------------------------
 
 
-\subsection{Emphasizing text}\label{sec:emphasis}
+\subsection{Emphasizing text}\label{sec:Emphasizing text}
 
 \textit{Italics} is a good way to emphasize printed text. However,
 \textbf{boldface} looks better when converted to HTML.
@@ -227,12 +232,11 @@ compiling reference lists by hand.
 
 \subsection{Embedded pictures}\label{sec:pictures}
 
-Fig.~\ref{fig:mypicture1} is an embedded EPS picture. Other types of
-pictures must be converted to EPS (embedded Postscript).
+Fig.~\ref{fig:mypicture1} is an embedded EPS picture. Other types of pictures must be converted to EPS (embedded Postscript).
 
 \begin{figure}[t]
   \begin{center}
-    \includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{flower.jpg}
+    \includegraphics[width=0.4\textwidth,height=0.4\textheight,keepaspectratio]{NoviSadLogoGray.jpg}
     \caption{An embedded JPG picturese }
     \label{fig:mypicture1}
   \end{center}
