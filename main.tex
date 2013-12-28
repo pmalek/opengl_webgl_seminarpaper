@@ -1,0 +1,301 @@
+% To produce Postscript and PDF:
+%    latex template; latex template; 
+%    dvips -o template.ps template; ps2pdf template.ps
+
+\documentclass[a4paper,12pt]{article}
+\usepackage{mathptmx}
+%\usepackage{newtxmath}   not available ? 
+%\usepackage{newtxtext}   not available ?
+%\usepackage[margin=35mm]{geometry}% <-------- CHANGE HERE for the global margins
+\usepackage[T1]{fontenc}    % Check that ÖÄÅöäå come out ok!
+\usepackage[utf8]{inputenc}
+\usepackage{graphicx}
+
+% should not USE 
+%\setlength{\parindent}{0mm} % Do not indent the 1st line of a paragraph.
+%\setlength{\parskip}{3mm}   % Add space between paragraphs.
+
+% Save some paper by stuffing more text on each page:
+% A4: 210mm x 297mm, approximately 35 mm margins on every side.
+\addtolength{\topmargin}{-14mm}    
+\addtolength{\textheight}{24mm}    
+\addtolength{\oddsidemargin}{-6mm} 
+\addtolength{\textwidth}{14mm}     
+
+\renewenvironment{abstract}
+ {\small
+  \begin{center}
+  \bfseries \abstractname\vspace{-.5em}\vspace{0pt}
+  \end{center}
+  \list{}{
+    \setlength{\leftmargin}{1cm}%
+    \setlength{\rightmargin}{\leftmargin}%
+  }%
+  \item\relax}
+ {\endlist}
+
+% This creates the header.
+\makeatletter
+\renewcommand{\@oddhead}
+{\fontsize{10}{12}\selectfont \hfill OpenGL ES 3.0 and WebGL 1.0 on Android platform \hfill }
+\makeatother
+
+
+\begin{document}
+
+
+%============================================================
+
+
+\title{OpenGL ES 3.0 and WebGL 1.0 on Android platform}
+\author{Patryk Małek\\
+        University of Novi Sad\\
+        Faculty of Sciences\\
+        \texttt{malekpatryk@gmail.com}
+        }
+\date{}         % Do not print the date on the final paper!
+\maketitle
+
+
+%============================================================
+
+\vspace{5pc}
+
+\centerline{
+\includegraphics[width=0.3\textwidth,height=0.3\textheight,keepaspectratio]{NoviSadLogoGray.jpg}
+}
+
+\vspace{5pc}
+
+\begin{abstract}
+\label{Abstract}
+Android OS has gained much popularity in the past few years, spreading from mobile devices to tv sets, automotive industry and multimedia tablets. 
+To meet users' growing expectations of multimedia content delivery methods and their demand for new astonishing features new open standards, like HTML5 and WebGL, are introduced. 
+WebGL is accelerated 3D graphics library for web, based on OpenGL ES ( as of moment of writing the current version of WebGL is 1.0.2 based on OpenGL ES 2.0).
+This paper presents basic concepts, history and exemplar code snippets using OpenGL ES 3.0 and WebGL 1.0.
+Presented code will be targeted for Android platform.
+\end{abstract}
+
+\pagebreak
+%============================================================
+
+%\tableofcontents
+
+%============================================================
+
+
+\section{Introduction}
+
+\subsection{Background}
+Nowadays, mobile devices such as cell phones or PDAs have become the most ubiquitous ones of all.
+Especially Android platform which is getting more and more popular which each year or even with each month.
+In the last months of 2013 Android reached 81\% market share in smartphone market. 
+With increasing demand for new features and user experiences developers and designers are working hard to keep up with users' desires.
+Smartphones’ and tablets’ high performance graphics processors now easily handle 3D visualization and there is no shortage in memory either. 
+In the past few years there has been a lot of development in the field of 3D visualisation in embedded systems e.g. Android platform which has given life to many frameworks or APIs like OpenGL ES, WebGL, three.js or many others.
+
+% subsection preface (end)
+
+\subsection{OpenGL ES}
+\textbf{OpenGL ES for Embedded Systems} is a subset of \textbf{OpenGL} API for rendering 2D and 3D graphics.
+It has been designed to be used with embedded systems like smartphones, tablets or video consoles.
+It's most recent version at the time of writing of this paper is 3.0 and it is based on OpenGL 4.3 - which means it provides full compatibility with it. 
+Version 3.0 is also backward compatible with OpenGL ES 2.0 enabling developers to add new video features later on in the development process.
+
+%============================================================
+
+\pagebreak[4]
+\section{Simple things first}
+
+In this section, we give some simple examples of Latex mark-up.
+Sec.~\ref{sec:emphasis} emphasizes important points and
+Sec.~\ref{sec:math} gives examples of math formulas.
+Finally, \ref{sec:list} demonstrates lists.
+
+
+%------------------------------------------------------------
+
+
+\subsection{Emphasizing text}\label{sec:emphasis}
+
+\textit{Italics} is a good way to emphasize printed text. However,
+\textbf{boldface} looks better when converted to HTML.
+
+Paragraphs are separated by an empty line in the Latex source code.
+Latex puts extra space between sentences, which you must suppress
+after a period that does not end a sentence, e.g.\ after this acronym.
+
+Cross-references to figures (Fig.~\ref{fig:mypicture1}), tables
+(Table~\ref{tab:mytable1}), other sections (Sec.~\ref{sec:emphasis})
+are easy to create. 
+
+
+%------------------------------------------------------------
+
+
+\subsection{Mathematics}\label{sec:math}
+
+In the mathematics mode, you can have subscripts such as $K_{master}$
+and superscripts like $2^x$. Longer formulas may be put on a separate
+line:
+\[ \emptyset \in \emptyset \; \Rightarrow \; E \neq mc^2. \]
+
+You may also want to number the formulas like Eqn.~\ref{eqn:myequation1}
+below.
+\begin{equation}\label{eqn:myequation1}
+C = E_{K_{public}}(P) = P^e. \hspace{10mm}   P = D_{K_{private}}(C) = C^d.
+\end{equation}
+
+
+
+%------------------------------------------------------------
+
+
+\subsection{Make a list}\label{sec:list}
+
+Lists can have either bullets or numbers on them. 
+
+\begin{itemize}
+\item one item
+\item another item, which is an exceptionally long one for an item
+  and consequently continues on the next line.
+\end{itemize}
+
+Lists can have several levels. Item~\ref{kukkuu} below contains
+another list.
+\begin{enumerate}
+\item the fist item \label{kukkuu}
+  \begin{enumerate}
+  \item the first subitem 
+  \item the second subitem
+  \end{enumerate}
+\item the second item
+\end{enumerate}
+
+
+%============================================================
+
+
+\pagebreak[3]
+\section{More complex stuff}
+
+This section provides examples of more complex things.
+
+
+%------------------------------------------------------------
+
+
+\subsection{Data served on a table}
+
+
+Table~\ref{tab:mytable1} presents some data in tabular form. 
+
+\begin{table}[t]
+  \begin{center}
+    \begin{tabular}{|l|lr|}
+    \hline
+    Protocol & Year &  RFC \\
+    \hline
+    TCP      & 1981 &  793 \\
+    ISAKMP   & 1998 & 2408 \\
+    Photuris & 1999 & 2522 \\
+    \hline
+    \end{tabular}
+    \caption{A table with some protocols}
+    \label{tab:mytable1}
+  \end{center}
+\end{table}
+
+
+%------------------------------------------------------------
+
+
+\subsection{Adding references}\label{sec:references}
+
+Do not forget to give pointers to the literature
+\cite{DifHel76,HarCar98,AbaNee94}.  One more reference
+\cite{Amoroso94}.
+
+If you plan to write with Latex regularly, create your own Bibtex
+database and use Bibtex to typeset the bibliographies automatically.
+In the long run, it will save you a lot of time and effort compared to
+compiling reference lists by hand.
+
+
+%------------------------------------------------------------
+
+
+\subsection{Embedded pictures}\label{sec:pictures}
+
+Fig.~\ref{fig:mypicture1} is an embedded EPS picture. Other types of
+pictures must be converted to EPS (embedded Postscript).
+
+\begin{figure}[t]
+  \begin{center}
+    \includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{flower.jpg}
+    \caption{An embedded JPG picturese }
+    \label{fig:mypicture1}
+  \end{center}
+\end{figure}
+
+
+
+%============================================================
+
+
+\pagebreak[3]
+\section{Yet another section title}
+
+
+%============================================================
+
+
+\pagebreak[3]
+\section{Conclusion}
+
+
+%============================================================
+
+%blank page
+\clearpage
+%\pagebreak[4]
+
+\begin{thebibliography}{1}
+\label{Bibliography}
+
+\bibitem{AbaNee94}
+Mart\'in Abadi and Roger Needham.
+\newblock Prudent engineering practice for cryptographic protocols.
+\newblock In \textit{Proc. 1994 IEEE Computer Society Symposium on Research 
+  in Security and Privacy}, Oakland, CA USA, May 1994. IEEE Computer Society
+  Press.
+
+\bibitem{Amoroso94}
+Edward Amoroso.
+\newblock \textit{Fundamentals of Computer Security Technology}.
+\newblock Prentice Hall, 1994.
+
+\bibitem{DifHel76}
+Whitfield Diffie and Martin~E. Hellman.
+\newblock New directions in cryptography.
+\newblock \textit{IEEE Transactions on Information Theory}, IT-22(6):644--654,
+  November 1976.
+
+\bibitem{HarCar98}
+Dan Harkins and Dave Carrel.
+\newblock The Internet key exchange (IKE).
+\newblock RFC 2409, IETF Network Working Group, November 1998.
+
+\end{thebibliography}
+
+
+% Of course, all advanced Latex users create their references 
+% list automatically with Bibtex:
+%
+%\bibliographystyle{plain} 
+%\bibliography{my-bib-database}
+%
+% In that case, remember to run bibtex:
+% latex template; bibtex template; latex template; latex template; 
+
+\end{document}
