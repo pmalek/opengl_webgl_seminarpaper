@@ -56,6 +56,8 @@
 \date{}         % Do not print the date on the final paper!
 \maketitle
 
+\thispagestyle{empty}
+
 
 %============================================================
 
@@ -70,9 +72,10 @@
 \begin{abstract}
 \label{Abstract}
 Android OS has gained much popularity in the past few years, spreading from mobile devices to tv sets, automotive industry and multimedia tablets. 
-To meet users' growing expectations of multimedia content delivery methods and their demand for new astonishing features new open standards, like HTML5 and WebGL, are introduced. 
-WebGL is accelerated 3D graphics library for web, based on OpenGL ES ( as of moment of writing the current version of WebGL is 1.0.2 based on OpenGL ES 2.0).
-This paper presents basic concepts, history and exemplar code snippets using OpenGL ES 3.0 and WebGL 1.0.
+To meet users' growing expectations of multimedia content delivery methods and their demand for new astonishing features new open standards, like HTML5 and WebGL, were introduced. 
+The past few years have been very fruitful for developers working 2D and 3D visualisation techiniques for embedded systems and many new framworks and APIs have been developed.
+
+This paper presents basic concepts, history of OpenGL ES 3.0 and WebGL 1.0 along with exemplar code snippets for those frameworks/APIs.
 Presented code will be targeted for Android platform.
 \end{abstract}
 
@@ -104,7 +107,13 @@ Version 3.0 is also backward compatible with OpenGL ES 2.0 enabling developers t
 
 \subsection{WebGL}
 \textbf{WebGL} is a cross platform, web standard JavaScript API to render 2D and 3D content in any compatible web browser without use of any external plugins like e.g. Adobe Flash.
+Current version 1.0 is based on OpenGL ES 2.0. WebGL's API is being exposed through HTML5 Canvas element as Document Object Model interfaces.
+Nowadays most of the current versions of web browsers (including the mobile versions) support WebGL.
 
+\subsection{Android platform} % (fold)
+\textbf{Android} is an operating system based on Linux, primarily designed for smartphones but after time it has also been developed for tablets, tvs etc.
+Currently is the most popular operating system for mobile devices with around 80\% of market share.
+The very first implementation of OpenGL ES that has been put into Android devices was OpenGL ES 1.0 for Android 2.2.
 
 %============================================================
 
@@ -113,15 +122,15 @@ Version 3.0 is also backward compatible with OpenGL ES 2.0 enabling developers t
 \section{Simple things first}
 
 In this section, we give some simple examples of Latex mark-up.
-Sec.~\ref{sec:emphasis} emphasizes important points and
-Sec.~\ref{sec:math} gives examples of math formulas.
+Sec. ~\ref{sec:emphasis} emphasizes important points and
+Sec. ~\ref{sec:math} gives examples of math formulas.
 Finally, \ref{sec:list} demonstrates lists.
 
 
 %------------------------------------------------------------
 
 
-\subsection{Emphasizing text}\label{sec:Emphasizing text}
+\subsection{Emphasizing text}\label{sec:emphasis}
 
 \textit{Italics} is a good way to emphasize printed text. However,
 \textbf{boldface} looks better when converted to HTML.
