@@ -10,6 +10,7 @@
 \usepackage[T1]{fontenc}    % Check that ÖÄÅöäå come out ok!
 \usepackage[utf8]{inputenc}
 \usepackage{graphicx}
+\usepackage{url} 
 
 % should not USE 
 %\setlength{\parindent}{0mm} % Do not indent the 1st line of a paragraph.
@@ -56,6 +57,7 @@
 \date{}         % Do not print the date on the final paper!
 \maketitle
 
+% prevents page numbering on this page
 \thispagestyle{empty}
 
 
@@ -75,7 +77,7 @@ Android OS has gained much popularity in the past few years, spreading from mobi
 To meet users' growing expectations of multimedia content delivery methods and their demand for new astonishing features new open standards, like HTML5 and WebGL, were introduced. 
 The past few years have been very fruitful for developers working 2D and 3D visualisation techiniques for embedded systems and many new framworks and APIs have been developed.
 
-This paper presents basic concepts, history of OpenGL ES 3.0 and WebGL 1.0 along with exemplar code snippets for those frameworks/APIs.
+The goal of this paper is to present basic concepts, history of OpenGL ES 3.0 and WebGL 1.0 along with exemplar code snippets for those frameworks/APIs.
 Presented code will be targeted for Android platform.
 \end{abstract}
 
@@ -93,25 +95,26 @@ Presented code will be targeted for Android platform.
 Nowadays, mobile devices such as cell phones or PDAs have become the most ubiquitous ones of all.
 Especially Android platform which is getting more and more popular which each year or even with each month.
 In the last months of 2013 Android reached 81\% market share in smartphone market. 
-With increasing demand for new features and user experiences developers and designers are working hard to keep up with users' desires.
+With increasing demand for new features, user experiences and ongoing evolution of chips,  developers and designers are working hard to keep up with users' desires using state of the art hardware and sofware.
 Smartphones’ and tablets’ high performance graphics processors now easily handle 3D visualization and there is no shortage in memory either. 
 In the past few years there has been a lot of development in the field of 3D visualisation in embedded systems e.g. Android platform which has given life to many frameworks or APIs like OpenGL ES, WebGL, three.js or many others.
 
 
 \subsection{OpenGL ES}
-\textbf{OpenGL ES for Embedded Systems} is a subset of \textbf{OpenGL} API for rendering 2D and 3D graphics.
+\textbf{OpenGL ES for Embedded Systems} \cite{opengles_kronos} is a subset of \textbf{OpenGL} \cite{opengl_kronos} API for rendering 2D and 3D graphics.
 It has been designed to be used with embedded systems like smartphones, tablets or video consoles.
+First version of OpenGL ES that was released in 2001, was version 1.0 based on API from OpenGL 1.3.
 It's most recent version at the time of writing of this paper is 3.0 and it is based on OpenGL 4.3 - which means it provides full compatibility with it. 
 Version 3.0 is also backward compatible with OpenGL ES 2.0 enabling developers to add new video processing features later on in the development process.
 
 
 \subsection{WebGL}
-\textbf{WebGL} is a cross platform, web standard JavaScript API to render 2D and 3D content in any compatible web browser without use of any external plugins like e.g. Adobe Flash.
+\textbf{WebGL} \cite{webgl_kronos} is a cross platform, web standard JavaScript API to render 2D and 3D content in any compatible web browser without use of any external plugins like e.g. Adobe Flash.
 Current version 1.0 is based on OpenGL ES 2.0. WebGL's API is being exposed through HTML5 Canvas element as Document Object Model interfaces.
 Nowadays most of the current versions of web browsers (including the mobile versions) support WebGL.
 
 \subsection{Android platform} % (fold)
-\textbf{Android} is an operating system based on Linux, primarily designed for smartphones but after time it has also been developed for tablets, tvs etc.
+\textbf{Android} \cite{androidcom} is an operating system based on Linux, primarily designed for smartphones but after time it has also been developed for tablets, tvs etc.
 Currently is the most popular operating system for mobile devices with around 80\% of market share.
 The very first implementation of OpenGL ES that has been put into Android devices was OpenGL ES 1.0 for Android 2.2.
 
@@ -193,7 +196,7 @@ another list.
 \pagebreak[3]
 \section{More complex stuff}
 
-This section provides examples of more complex things.
+This section provides examples of more complex things. \cite{opengles_kronos}  
 
 
 %------------------------------------------------------------
@@ -226,9 +229,9 @@ Table~\ref{tab:mytable1} presents some data in tabular form.
 
 \subsection{Adding references}\label{sec:references}
 
-Do not forget to give pointers to the literature
-\cite{DifHel76,HarCar98,AbaNee94}.  One more reference
-\cite{Amoroso94}.
+Do not forget to give pointers to the literature \cite{opengl_kronos}
+%\cite{DifHel76,HarCar98,AbaNee94}.  One more reference
+%\cite{Amoroso94}.
 
 If you plan to write with Latex regularly, create your own Bibtex
 database and use Bibtex to typeset the bibliographies automatically.
@@ -252,56 +255,13 @@ Fig.~\ref{fig:mypicture1} is an embedded EPS picture. Other types of pictures mu
 \end{figure}
 
 
-
-%============================================================
-
-
-\pagebreak[3]
-\section{Yet another section title}
-
-
-%============================================================
-
-
-\pagebreak[3]
-\section{Conclusion}
-
-
 %============================================================
 
 %blank page
 \clearpage
 %\pagebreak[4]
-
-\begin{thebibliography}{1}
-\label{Bibliography}
-
-\bibitem{AbaNee94}
-Mart\'in Abadi and Roger Needham.
-\newblock Prudent engineering practice for cryptographic protocols.
-\newblock In \textit{Proc. 1994 IEEE Computer Society Symposium on Research 
-  in Security and Privacy}, Oakland, CA USA, May 1994. IEEE Computer Society
-  Press.
-
-\bibitem{Amoroso94}
-Edward Amoroso.
-\newblock \textit{Fundamentals of Computer Security Technology}.
-\newblock Prentice Hall, 1994.
-
-\bibitem{DifHel76}
-Whitfield Diffie and Martin~E. Hellman.
-\newblock New directions in cryptography.
-\newblock \textit{IEEE Transactions on Information Theory}, IT-22(6):644--654,
-  November 1976.
-
-\bibitem{HarCar98}
-Dan Harkins and Dave Carrel.
-\newblock The Internet key exchange (IKE).
-\newblock RFC 2409, IETF Network Working Group, November 1998.
-
-\end{thebibliography}
-
-
+\bibliographystyle{plain}
+\bibliography{bibliography} 
 % Of course, all advanced Latex users create their references 
 % list automatically with Bibtex:
 %
