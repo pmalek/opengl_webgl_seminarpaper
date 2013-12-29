@@ -40,7 +40,6 @@
 {\fontsize{10}{12}\selectfont \hfill OpenGL ES 3.0 and WebGL 1.0 on Android platform \hfill }
 \makeatother
 
-
 \begin{document}
 
 %============================================================
@@ -75,51 +74,16 @@ The past few years have been very fruitful for developers working 2D and 3D visu
 \newline The goal of this paper is to present basic concepts, history of OpenGL ES 3.0 and WebGL 1.0 along with exemplar code snippets for those frameworks/APIs.
 Presented code will be targeted for Android platform.
 \end{abstract}
-
 \pagebreak
+
 %============================================================
 
 %\tableofcontents
 
 %============================================================
 
-\section{Introduction}
-
-\subsection{Background}
-Nowadays, mobile devices such as cell phones or PDAs have become the most ubiquitous ones of all.
-Especially Android platform which is getting more and more popular which each year or even with each month.
-In the last months of 2013 Android reached 81\% market share in smartphone market. 
-With increasing demand for new features, user experiences and ongoing evolution of chips,  developers and designers are working hard to keep up with users' desires using state of the art hardware and sofware.
-Smartphones’ and tablets’ high performance graphics processors now easily handle 3D visualization and there is no shortage in memory either. 
-In the past few years there has been a lot of development in the field of 3D visualisation in embedded systems e.g. Android platform which has given life to many frameworks or APIs like OpenGL ES, WebGL, three.js or many others.
-
-\subsection{OpenGL ES}
-\textbf{OpenGL ES for Embedded Systems} \cite{opengles_kronos} is a subset of \textbf{OpenGL} \cite{opengl_kronos} API for rendering 2D and 3D graphics.
-It has been designed to be used with embedded systems like smartphones, tablets or video consoles.
-First version of OpenGL ES that was released in 2001, was version 1.0 based on API from OpenGL 1.3.
-
-Its most recent version at the time of writing of this paper is 3.0 and it is based on OpenGL 4.3. 
-OpenGL ES always provides compatibility with OpenGL's version that it has been based on, so for instance OpenGL ES 3.0 is compatible with OpenGL 4.3 - thus allowing developers to change only small bits of code to make desktop version run on embedded systems using OpenGL ES.
-Version 3.0 is also backward compatible with OpenGL ES 2.0 enabling developers to add new video processing features later on in the development process.
-
-\subsection{WebGL}
-\textbf{WebGL} \cite{webgl_kronos} is a cross platform, web standard JavaScript API to render 2D and 3D content in any compatible web browser without use of any external plugins like e.g. Adobe Flash.
-Current version 1.0 is based on OpenGL ES 2.0. WebGL's API is being exposed through HTML5 Canvas element as Document Object Model interfaces.
-Nowadays most of the current versions of web browsers (including the mobile versions) support WebGL.
-
-\subsection{Android platform}
-\textbf{Android} \cite{androidcom} is an operating system (based on Linux operating system \cite{gnulinux}), primarily designed for smartphones but after time it has also been developed for tablets, tvs etc.
-The very first unofficial versions of Android came out in late 2008 but the first official to be supported by Google came out on April 30th 2009 marked as version 1.5 - \textit{Cupcake}.
-\newline Currently is the most popular operating system for mobile devices with around 80\% of market share.
-OpenGL ES and Android already have quite a history together.
-First version of OpenGL ES API marked as 1.0 was implemented in Android platform in version 1.0 marked as - \textit{Apple Pie}.
-After that there has been more improvements and features implemented with each version. 
-Currently, Android platform since its version 4.3 support the latest OpenGL ES version 3.0.
-
-\subsection{Deployment platform - Google Nexus 4}
-For deployment purposes \textbf{Google Nexus 4} has been chosen. Google branded LG smarthone, released on November 13 2013.
-\newline Having mid-high end specs: processor Qualcomm Snapdragon™ S4 Pro with 4 cores each 1.5 Ghz and 2GB of RAM it will definately fit purposes as a deployment platform.
-\newline With its recent update from Google to Android 4.3 it has received support for OpenGL ES 3.0 together with many software improvement like: enhancements for rendering pipeline, a new version of GLSL ES shading language or greatly enhanced texturing functionalities.
+\section{Introduction} 
+\input{introduction.tex}
 
 %============================================================
 
@@ -145,9 +109,7 @@ Cross-references to figures (Fig.~\ref{fig:mypicture1}), tables
 (Table~\ref{tab:mytable1}), other sections (Sec.~\ref{sec:emphasis})
 are easy to create. 
 
-
 %------------------------------------------------------------
-
 
 \subsection{Mathematics}\label{sec:math}
 
@@ -162,10 +124,7 @@ below.
 C = E_{K_{public}}(P) = P^e. \hspace{10mm}   P = D_{K_{private}}(C) = C^d.
 \end{equation}
 
-
-
 %------------------------------------------------------------
-
 
 \subsection{Make a list}\label{sec:list}
 
@@ -188,21 +147,9 @@ another list.
 \item the second item
 \end{enumerate}
 
-
 %============================================================
 
-
-\pagebreak[3]
-\section{More complex stuff}
-
-This section provides examples of more complex things. \cite{opengles_kronos}  
-
-
-%------------------------------------------------------------
-
-
 \subsection{Data served on a table}
-
 
 Table~\ref{tab:mytable1} presents some data in tabular form. 
 
@@ -212,7 +159,6 @@ Table~\ref{tab:mytable1} presents some data in tabular form.
     \hline
     Protocol & Year &  RFC \\
     \hline
-    TCP      & 1981 &  793 \\
     ISAKMP   & 1998 & 2408 \\
     Photuris & 1999 & 2522 \\
     \hline
@@ -222,24 +168,7 @@ Table~\ref{tab:mytable1} presents some data in tabular form.
   \end{center}
 \end{table}
 
-
 %------------------------------------------------------------
-
-
-\subsection{Adding references}\label{sec:references}
-
-Do not forget to give pointers to the literature \cite{opengl_kronos}
-%\cite{DifHel76,HarCar98,AbaNee94}.  One more reference
-%\cite{Amoroso94}.
-
-If you plan to write with Latex regularly, create your own Bibtex
-database and use Bibtex to typeset the bibliographies automatically.
-In the long run, it will save you a lot of time and effort compared to
-compiling reference lists by hand.
-
-
-%------------------------------------------------------------
-
 
 \subsection{Embedded pictures}\label{sec:pictures}
 
@@ -253,19 +182,13 @@ Fig.~\ref{fig:mypicture1} is an embedded EPS picture. Other types of pictures mu
   \end{center}
 \end{figure}
 
-
 %============================================================
 
-%blank page
 \clearpage
 %\pagebreak[4]
+%
 \bibliographystyle{plain}
 \bibliography{bibliography} 
-% Of course, all advanced Latex users create their references 
-% list automatically with Bibtex:
-%
-%\bibliographystyle{plain} 
-%\bibliography{my-bib-database}
 %
 % In that case, remember to run bibtex:
 % latex template; bibtex template; latex template; latex template; 
