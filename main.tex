@@ -1,19 +1,23 @@
 % To produce Postscript and PDF:
 %    latex template; latex template; 
 %    dvips -o template.ps template; ps2pdf template.ps
-\documentclass[a4paper,12pt]{article}
+\documentclass[a4paper,11pt]{article}
 \usepackage{mathptmx}
 %\usepackage{newtxmath}   not available ? 
-%\usepackage{newtxtext}   not available ?
+%\usepackage{newtxtext} []  not available ?
 %\usepackage[margin=35mm]{geometry}% <-------- CHANGE HERE for the global margins
 \usepackage[T1]{fontenc}    % Check that ÖÄÅöäå come out ok!
 \usepackage[utf8]{inputenc}
 \usepackage{graphicx}
 \usepackage{url} 
 \usepackage{parskip}
+\usepackage{listings}
 % should not USE  ? 
 %\setlength{\parindent}{0mm} % Do not indent the 1st line of a paragraph.
 %\setlength{\parskip}{3mm}   % Add space between paragraphs.
+
+% defines my code style
+\input{codestyle.tex} 
 
 % Save some paper by stuffing more text on each page:
 % A4: 210mm x 297mm, approximately 35 mm margins on every side.
@@ -90,31 +94,44 @@ Presented code will be targeted for Android platform.
 \pagebreak[3]
 \section{OpenGL ES}
 
-In this section, we give some simple examples of Latex mark-up. Sec. \ref{sec:emphasis} emphasizes important points and
-Sec. \ref{sec:math} gives examples of math formulas. Finally, \ref{sec:list} demonstrates lists.
+Sec. \ref{sec:math} gives examples of math formulas.
 
+\begin{lstlisting}[language=Java]
+private float[] mRotationMatrix = new float[16];
+public void onDrawFrame(GL10 gl) {
+    ...
+    float[] scratch = new float[16];
+
+    // Create a rotation transformation for the triangle
+    long time = SystemClock.uptimeMillis() % 4000L;
+    float angle = 0.090f * ((int) time);
+    Matrix.setRotateM(mRotationMatrix, 0, angle, 0, 0, -1.0f);
+
+    // Combine the rotation matrix with the projection and camera view
+    // Note that the mMVPMatrix factor *must be first* in order
+    // for the matrix multiplication product to be correct.
+    Matrix.multiplyMM(scratch, 0, mMVPMatrix, 0, mRotationMatrix, 0);
+
+    // Draw triangle
+    mTriangle.draw(scratch);
+}
+\end{lstlisting}
 %------------------------------------------------------------
-
 
 \subsection{Emphasizing text}\label{sec:emphasis}
 
-\textit{Italics} is a good way to emphasize printed text. However,
-\textbf{boldface} looks better when converted to HTML.
-
-Paragraphs are separated by an empty line in the Latex source code.
-Latex puts extra space between sentences, which you must suppress
-after a period that does not end a sentence, e.g.\ after this acronym.
+\textit{Italics} is a good way to emphasize printed text. However, \textbf{boldface} looks better when converted to HTML.
 
 Cross-references to figures (Fig.~\ref{fig:mypicture1}), tables
-(Table~\ref{tab:mytable1}), other sections (Sec.~\ref{sec:emphasis})
+(Table \ref{tab:mytable1} ), other sections (Sec.~\ref{sec:emphasis})
 are easy to create. 
 
 %------------------------------------------------------------
 
+\pagebreak[4] 
 \subsection{Mathematics}\label{sec:math}
 
-In the mathematics mode, you can have subscripts such as $K_{master}$
-and superscripts like $2^x$. Longer formulas may be put on a separate
+Longer formulas may be put on a separate
 line:
 \[ \emptyset \in \emptyset \; \Rightarrow \; E \neq mc^2. \]
 
