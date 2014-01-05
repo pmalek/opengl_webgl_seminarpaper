@@ -12,6 +12,7 @@
 \usepackage{url} 
 \usepackage{parskip}
 \usepackage{listings} % for code snippets
+\usepackage{authblk}
 % should not USE  ? 
 %\setlength{\parindent}{0mm} % Do not indent the 1st line of a paragraph.
 %\setlength{\parskip}{3mm}   % Add space between paragraphs.
@@ -44,14 +45,17 @@
 {\fontsize{10}{12}\selectfont \hfill OpenGL ES 3.0 and WebGL 1.0 on Android platform \hfill }
 \makeatother
 
+\renewcommand{\Affilfont}{\large\itshape}
+
 \begin{document}
 
 %============================================================
 % title
 \label{Title} 
-\title{\textbf{OpenGL ES 3.0 and WebGL 1.0 on Android platform \vspace{4pc}}}
-\author{\Large Patryk Małek\\
-        \itshape University of Novi Sad\\
+\title{\textbf{OpenGL ES 3.0 and WebGL 1.0 on Android platform \vspace{3pc}}}
+\author{\Large Patryk Małek}
+\affil{
+        University of Novi Sad\\
         Faculty of Sciences\\
         malekpatryk@gmail.com
         }
@@ -62,7 +66,7 @@
 
 %============================================================
 
-\vspace{6pc}
+\vspace{5pc}
 
 \centerline{
 \includegraphics[width=0.3\textwidth,height=0.3\textheight,keepaspectratio]{NoviSadLogoGray.jpg}
