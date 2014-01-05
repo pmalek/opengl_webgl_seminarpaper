@@ -5,7 +5,7 @@
 \usepackage{mathptmx}
 %\usepackage{newtxmath}   not available ? 
 %\usepackage{newtxtext} []  not available ?
-\usepackage[margin=40mm]{geometry}% <-------- CHANGE HERE for the global margins
+\usepackage[margin=38mm]{geometry}% <-------- CHANGE HERE for the global margins
 \usepackage[T1]{fontenc}    % Check that ÖÄÅöäå come out ok!
 \usepackage[utf8]{inputenc}
 \usepackage{graphicx}
@@ -27,12 +27,12 @@
 \addtolength{\textwidth}{14mm}     
 
 \renewenvironment{abstract}
-{\small
+{\itshape \small
   \begin{center}
   \bfseries \abstractname\vspace{-.5em}\vspace{0pt}
   \end{center}
   \list{}{
-    \setlength{\leftmargin}{1cm}%
+    \setlength{\leftmargin}{1.6cm}%
     \setlength{\rightmargin}{\leftmargin}%
   }%
   \item\relax}
@@ -49,11 +49,11 @@
 %============================================================
 % title
 \label{Title} 
-\title{OpenGL ES 3.0 and WebGL 1.0 on Android platform}
-\author{Patryk Małek\\
-        University of Novi Sad\\
+\title{\textbf{OpenGL ES 3.0 and WebGL 1.0 on Android platform \vspace{4pc}}}
+\author{\Large Patryk Małek\\
+        \itshape University of Novi Sad\\
         Faculty of Sciences\\
-        \texttt{malekpatryk@gmail.com}
+        malekpatryk@gmail.com
         }
 \date{}         % Do not print the date on the final paper!
 \maketitle
@@ -62,18 +62,21 @@
 
 %============================================================
 
-\vspace{7pc}
+\vspace{6pc}
 
 \centerline{
 \includegraphics[width=0.3\textwidth,height=0.3\textheight,keepaspectratio]{NoviSadLogoGray.jpg}
 }
 
-\vspace{9pc}
+\vspace{6pc}
 
 \begin{abstract}
 \label{Abstract}
-Android OS has gained much popularity in the past few years, spreading from mobile devices to tv sets, automotive industry and multimedia tablets. 
-To meet users' growing expectations of multimedia content delivery methods and their demand for new astonishing features new open standards, like HTML5 and WebGL, were introduced. 
+Mobile devices are successfully managing to solve task primarily aimed for desktop computers.
+With their arithmetic output power rapidly increasing it's nowadays quite common for 3D games or applications developers to add mobile platforms as an aim for their products.  
+Speaking of which, Android platform is definately one of the most well known and ubiquitous mobile systems available on the market.
+It has gained much popularity in the past few years, spreading from mobile devices to tv sets, automotive industry and multimedia tablets. 
+\newline To meet users' growing expectations of multimedia content delivery methods and their demand for new astonishing features new open standards, like HTML5 and WebGL, were introduced. 
 The past few years have been very fruitful for developers working 2D and 3D visualisation techiniques for embedded systems and many new framworks and APIs have been developed.
 \newline The goal of this paper is to present basic concepts, history of OpenGL ES 3.0 and WebGL 1.0 along with exemplar code snippets for those frameworks/APIs.
 Presented code will be targeted for Android platform.
