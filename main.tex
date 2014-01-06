@@ -5,7 +5,7 @@
 \usepackage{mathptmx}
 %\usepackage{newtxmath}   not available ? 
 %\usepackage{newtxtext} []  not available ?
-\usepackage[margin=38mm]{geometry}% <-------- CHANGE HERE for the global margins
+\usepackage[margin=30mm]{geometry}% <-------- CHANGE HERE for the global margins
 \usepackage[T1]{fontenc}    % Check that ÖÄÅöäå come out ok!
 \usepackage[utf8]{inputenc}
 \usepackage{graphicx}
@@ -23,9 +23,9 @@
 % Save some paper by stuffing more text on each page:
 % A4: 210mm x 297mm, approximately 35 mm margins on every side.
 \addtolength{\topmargin}{-14mm}    
-\addtolength{\textheight}{24mm}    
-\addtolength{\oddsidemargin}{-4mm} 
-\addtolength{\textwidth}{14mm}     
+\addtolength{\textheight}{20mm}    
+%\addtolength{\oddsidemargin}{-10mm} 
+%\addtolength{\textwidth}{14mm}     
 
 \renewenvironment{abstract}
 {\itshape \small
@@ -33,7 +33,7 @@
   \bfseries \abstractname\vspace{-.5em}\vspace{0pt}
   \end{center}
   \list{}{
-    \setlength{\leftmargin}{1.6cm}%
+    \setlength{\leftmargin}{1.5cm}%
     \setlength{\rightmargin}{\leftmargin}%
   }%
   \item\relax}
@@ -45,6 +45,7 @@
 {\fontsize{10}{12}\selectfont \hfill OpenGL ES 3.0 and WebGL 1.0 on Android platform \hfill }
 \makeatother
 
+\renewcommand{\Authfont}{\Large\normalfont}
 \renewcommand{\Affilfont}{\large\itshape}
 
 \begin{document}
@@ -52,14 +53,14 @@
 %============================================================
 % title
 \label{Title} 
-\title{\textbf{OpenGL ES 3.0 and WebGL 1.0 on Android platform \vspace{3pc}}}
-\author{\Large Patryk Małek}
+\title{OpenGL ES 3.0 and WebGL 1.0 on Android platform \vspace{1pc}}
+\author{Patryk Małek \vspace{-0.7pc}}
 \affil{
         University of Novi Sad\\
         Faculty of Sciences\\
         malekpatryk@gmail.com
-        }
-\date{}         % Do not print the date on the final paper!
+      }
+\date{\today}         % Do not print the date on the final paper!
 \maketitle
 % prevents page numbering on this page
 \thispagestyle{empty}
@@ -69,15 +70,15 @@
 \vspace{5pc}
 
 \centerline{
-\includegraphics[width=0.3\textwidth,height=0.3\textheight,keepaspectratio]{NoviSadLogoGray.jpg}
+\includegraphics[width=0.35\textwidth,height=0.35\textheight,keepaspectratio]{NoviSadLogoGray.jpg}
 }
 
-\vspace{6pc}
+\vspace{9pc}
 
 \begin{abstract}
 \label{Abstract}
-Mobile devices are successfully managing to solve task primarily aimed for desktop computers.
-With their arithmetic output power rapidly increasing it's nowadays quite common for 3D games or applications developers to add mobile platforms as an aim for their products.  
+Mobile devices are successfully managing to solve tasks primarily aimed for desktop computers.
+With their computational power rapidly increasing it's nowadays quite common for 3D games' or applications' developers to add mobile platforms as an aim for their products.  
 Speaking of which, Android platform is definately one of the most well known and ubiquitous mobile systems available on the market.
 It has gained much popularity in the past few years, spreading from mobile devices to tv sets, automotive industry and multimedia tablets. 
 \newline To meet users' growing expectations of multimedia content delivery methods and their demand for new astonishing features new open standards, like HTML5 and WebGL, were introduced. 
@@ -101,16 +102,18 @@ Presented code will be targeted for Android platform.
 \pagebreak[3]
 \section{OpenGL ES \& WebGL}
 
-
-
 % reference to section examplae
 % (Sec.~\ref{sec:emphasis})
-%
 %------------------------------------------------------------
 
 \pagebreak[3] 
 \subsection{OpenGL ES}
 
+\subsubsection{OpenGL ES version history}
+
+Its most recent version at the time of writing of this paper is 3.0 \cite{opengl_es3_spec} and it is based on OpenGL 4.3.
+OpenGL ES always provides compatibility with OpenGL's version that it has been based on, so for instance OpenGL ES 3.0 is compatible with OpenGL 4.3.
+Version 3.0 is also backward compatible with OpenGL ES 2.0 enabling developers to add new video processing features later on in the development process.
 
 \pagebreak[3] 
 \subsection{WebGL}
@@ -132,11 +135,9 @@ In this section we will try to demonstrate the power of OpenGL ES API
 
 \clearpage
 \label{Bibliography} 
-%\pagebreak[4]
 %
 \bibliographystyle{plain}
-\bibliography{bibliography} 
-%
+\footnotesize{ \bibliography{bibliography} }
 % In that case, remember to run bibtex:
 % latex template; bibtex template; latex template; latex template; 
 

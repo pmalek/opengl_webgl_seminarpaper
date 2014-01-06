@@ -8,19 +8,34 @@ Smartphones’ and tablets’ high performance graphics processors now easily ha
 In the past few years there has been a lot of development in the field of 3D visualisation in embedded systems e.g.\ Android platform which has given life to many frameworks or APIs like OpenGL ES, WebGL, three.js or many others.
 
 \subsection{OpenGL ES}
-\emph{OpenGL for Embedded Systems} \cite{opengles_kronos} is a subset of \emph{OpenGL} \cite{opengl_kronos} API for rendering 2D and 3D graphics.
+\emph{OpenGL for Embedded Systems} \cite{opengles_kronos} is a subset of \emph{OpenGL} \cite{opengl_kronos} API for rendering 2D and 3D graphics created by \emph{Kronos Group} \cite{kronos_group} 
 It has been designed to be used with embedded systems like smartphones, tablets or video consoles.
-First version of OpenGL ES that was released in 2001, was version 1.0 based on API from OpenGL 1.3.
-
-Its most recent version at the time of writing of this paper is 3.0 and it is based on OpenGL 4.3.
-OpenGL ES always provides compatibility with OpenGL's version that it has been based on, so for instance OpenGL ES 3.0 is compatible with OpenGL 4.3 - thus allowing developers to change only small bits of code to make desktop version run on embedded systems using OpenGL ES.
-Version 3.0 is also backward compatible with OpenGL ES 2.0 enabling developers to add new video processing features later on in the development process.
+OpenGL ES shows a good example of re-constructing a general purpose desktop 3D graphics library to a small, low-level rendering library for embedded systems.
+OpenGL ES aimed to provide an extremely compact API without sacrificing features.
+Its primary objective (for the release of version 1.0) was to be implementable fully in software in under 50kB of code while being well-suited for hardware acceleration \cite{mobile_3d_graphics_with_OGLES_M3G}.
+The graphics effects familiar from desktops are available on mobile devices thanks to packed with features, compressed in size library.
+\newline OpenGL ES always provides compatibility with OpenGL's version that it has been based on.
+This way it is allowing developers to immediately port their mobile version of application to desktops and then add desktop specific features or effects to their product.
+This flexibility of OpenGL ES allows developers for faster and easier porting applications between mobile and desktop devices.
+\newline First version that was released in 2001, was version 1.0 based on API from OpenGL 1.3.
+It continued most of the functionality from OpenGL and added some as well (for instance, removed need for wraping OpenGL calls with \emph{glBegin} and \emph{glEnd} ).
+\newline In 2004 Kronos Group OpenGL 1.1 which improved image quality and optimizations to increase performance while reducing memory bandwidth usage to save power.
+\newline In march 2007 OpenGL ES 2.0 has been released and enabled fully programmable 3D graphics (thanks to programmable pipeline).
+It was based on OpenGL 2.0 and this compatibility lasted until release of OpenGL 4.1.
+\newline The most recent version of OpenGL ES was released in August 2013 and it is marked as 3.0.
+It is backwards compatible with version 2.0 and it was based on OpenGL 4.3 API.
 
 \subsection{WebGL}
-\emph{WebGL} \cite{webgl_kronos} is a cross platform, web standard JavaScript API to render 2D and 3D content in any compatible web browser without use of any external plugins like e.g.\ Adobe Flash.
-Current version 1.0 is based on OpenGL ES 2.0.
-WebGL's API is being exposed through HTML5 Canvas element as Document Object Model interfaces.
+\emph{WebGL} \cite{webgl_kronos} is a cross platform, web standard JavaScript API for rendering low-level 3D content in any compatible web browser without use of any external plugins like e.g.\ Adobe Flash.
+It is exposed through HTML5's Canvas element as DOM (Document Object Model) interface.
 Nowadays most of the current versions of web browsers (including the mobile versions) support WebGL.
+WebGL grew out of the Canvas 3D experiments started by Vladimir Vukićević at Mozilla and has been presented in 2006 as a Canvas 3D prototype.
+By the end of 2007, both Mozilla and Opera had made their own separate implementations.
+In early 2009, the non-profit technology consortium Khronos Group started the WebGL Working Group, with initial participation from Apple, Google, Mozilla, Opera, and others.
+Version 1.0 of the WebGL specification was released in March 2011.
+Early applications of WebGL include Google Maps and Zygote Body \cite{zygote_body}.
+More recently, Autodesk has ported most of their applications to the cloud running on local WebGL clients.
+Development of the WebGL 2 specification started in 2013 and its specification is based on OpenGL ES 3.0.
 
 \subsection{Android platform}
 \emph{Android} \cite{androidcom} is an operating system (based on Linux operating system \cite{gnulinux}), primarily designed for smartphones but after time it has also been developed for tablets, tvs etc.
