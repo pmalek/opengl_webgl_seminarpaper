@@ -13,6 +13,7 @@
 \usepackage{parskip}
 \usepackage{listings} % for code snippets
 \usepackage{authblk}
+%
 % should not USE  ? 
 %\setlength{\parindent}{0mm} % Do not indent the 1st line of a paragraph.
 %\setlength{\parskip}{3mm}   % Add space between paragraphs.
@@ -95,7 +96,7 @@ Presented code will be targeted for Android platform.
 %============================================================
 
 \section{Introduction} 
-\input{introduction.tex}
+\input{./tex_files/introduction.tex}
 
 %============================================================
 
@@ -109,11 +110,29 @@ Presented code will be targeted for Android platform.
 \pagebreak[3] 
 \subsection{OpenGL ES}
 
-\subsubsection{OpenGL ES version history}
+\subsubsection{New features in OpenGL ES 3.0}
+\input{./tex_files/new_funct_opengles_3.tex}
 
-Its most recent version at the time of writing of this paper is 3.0 \cite{opengl_es3_spec} and it is based on OpenGL 4.3.
-OpenGL ES always provides compatibility with OpenGL's version that it has been based on, so for instance OpenGL ES 3.0 is compatible with OpenGL 4.3.
-Version 3.0 is also backward compatible with OpenGL ES 2.0 enabling developers to add new video processing features later on in the development process.
+\subsubsection{Interaction with OpenGL ES on Android}
+Most of the API calls using OpenGL ES on Android are the same as for the desktop version of OpenGL. 
+To start working with OpenGL ES one has to require OpenGL functionality in the manifest file to be sure that it will be available in the runtime.
+
+\lstinputlisting[caption={Requesting OpenGL ES in Android Manifest file.}]{./code/manifest_require_opengles.xml}
+
+Writing an application that uses OpenGL for all or part of its rendering one would use \emph{GLSurfaceView} \cite{android_glsurfaceview} as a base for its application.
+It is a specialized view container that enables rendering with use of OpenGL calls on devices with Android OS where \emph{GLSurfaceView.Renderer} controls what is drawn on that view.
+
+GLSurfaceView among many other supplies the following features:
+\begin{itemize}
+\item Manages a surface, which is a special piece of memory that can be composited into the Android view system.
+\item Manages an EGL display, which enables OpenGL to render into a surface.
+\item Accepts a user-provided Renderer object that does the actual rendering.
+\item Supports both on-demand and continuous rendering.
+\end{itemize}
+
+Below, one can observe a minimal implementation that would allow interaction with GLSurfaceView.
+
+\lstinputlisting[caption={Minimal implementation of Android's \emph{Activity class} \cite{android_activity} that would use GLSurfaceView.}]{./code/openglesactivity.java}
 
 \pagebreak[3] 
 \subsection{WebGL}
@@ -123,9 +142,9 @@ Version 3.0 is also backward compatible with OpenGL ES 2.0 enabling developers t
 \clearpage 
 \section{Programming Examples} 
 
-In this section we will try to demonstrate the power of OpenGL ES API
+In this section we will try to demonstrate the power of OpenGL ES API 
 
-\lstinputlisting[caption={Exemplar piece of code in Java using OpenGL ES API}]{example1.java}
+\lstinputlisting[caption={Exemplar piece of code in Java using OpenGL ES API}]{code/example1.java}
 
 %============================================================
 

@@ -1,3 +1,5 @@
+temp_questions/
+additional_stuff/
 *.aux
 *.fdb_latexmk
 *.synctex.gz
