@@ -1,2 +1,2 @@
-<!-- We require OpenGL ES 2.0 (0x00020000) or 3.0 (0x00030000) -->
+<!-- We require OpenGL ES: 2.0 (0x00020000), 3.0 (0x00030000) or any other -->
 <uses-feature android:glEsVersion="0x00030000" android:required="true" />

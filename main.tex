@@ -69,11 +69,9 @@
 %============================================================
 
 \vspace{5pc}
-
 \centerline{
 \includegraphics[width=0.35\textwidth,height=0.35\textheight,keepaspectratio]{NoviSadLogoGray.jpg}
 }
-
 \vspace{9pc}
 
 \begin{abstract}
@@ -107,7 +105,7 @@
 
 \subsubsection{Interaction with OpenGL ES on Android}
 Most of the API calls using OpenGL ES on Android are the same as for the desktop version of OpenGL. 
-To start working with OpenGL ES one has to require OpenGL functionality in the manifest file to be sure that it will be available in the runtime.
+To start working with OpenGL ES one can require OpenGL functionality in the manifest file to exclude devices that do not support OpenGL ES in the particular version.
 
 \lstinputlisting[caption={Requesting OpenGL ES in Android Manifest file.}]{./code/manifest_require_opengles.xml}
 
@@ -125,6 +123,12 @@ GLSurfaceView among many other supplies the following features:
 Below, one can observe a minimal implementation that would allow interaction with GLSurfaceView.
 
 \lstinputlisting[caption={Minimal implementation of Android's \emph{Activity class} \cite{android_activity} that would use GLSurfaceView.}]{./code/openglesactivity.java}
+
+One can also check what version is supported on the device with adding this to the code snippet presented above:
+
+\lstinputlisting[caption={Checking OpenGL ES version support on the device.}]{./code/check_opengl_es_version.java}
+
+
 
 \pagebreak[3] 
 \subsection{WebGL}
