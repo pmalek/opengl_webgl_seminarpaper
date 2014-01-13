@@ -5,7 +5,7 @@
 \usepackage{mathptmx}
 %\usepackage{newtxmath}   not available ? 
 %\usepackage{newtxtext} []  not available ?
-\usepackage[margin=26mm]{geometry}% <-------- CHANGE HERE for the global margins
+\usepackage[margin=23mm]{geometry}% <-------- CHANGE HERE for the global margins
 \usepackage[T1]{fontenc}    % Check that ÖÄÅöäå come out ok!
 \usepackage[utf8]{inputenc}
 \usepackage{graphicx}
@@ -14,11 +14,12 @@
 \usepackage{listings} % for code snippets
 \usepackage{authblk}
 \usepackage[nobottomtitles]{titlesec}
-\linespread{1.15}
+\linespread{1.1}
+\usepackage[bottom]{footmisc}
 %
 % should not USE  ? 
-%\setlength{\parindent}{0mm} % Do not indent the 1st line of a paragraph.
-%\setlength{\parskip}{3mm}   % Add space between paragraphs.
+%\setlength{\parindent}{10mm} % Do not indent the 1st line of a paragraph.
+%\setlength{\parskip}{20mm}   % Add space between paragraphs.
 
 \newenvironment{filecode}[1][]
   {\minipage{\linewidth}% \begin{filecode}[#1]
@@ -31,7 +32,7 @@
 % Save some paper by stuffing more text on each page:
 % A4: 210mm x 297mm, approximately 35 mm margins on every side.
 \addtolength{\topmargin}{-2mm}    
-\addtolength{\textheight}{4mm}    
+\addtolength{\textheight}{2mm}    
 %\addtolength{\oddsidemargin}{-10mm} 
 %\addtolength{\textwidth}{14mm}     
 
@@ -121,7 +122,6 @@ Usage of OpenGL ES directive in manifest file is shown on Listing~\ref{lst:openg
 %\end{filecode}
 
 One can also check what version is supported on the device by using the code snippet from Listing~\ref{lst:check_opengl_es_version}.
-
 \begin{filecode}[label=lst:check_opengl_es_version,caption=Checking OpenGL ES version support on the device.]
   \lstinputlisting{./code/check_opengl_es_version.java}
 \end{filecode}
@@ -135,7 +135,7 @@ It is also possible to implement OpenGL applications with \emph{TextureView} (go
 GLSurfaceView among many others, supplies the following features:
 \begin{itemize}
 \item Manages a surface, which is a special piece of memory that can be composited into the Android view system.
-\item Manages an EGL display, which enables OpenGL to render into a surface.
+\item Manages an EGL\footnote{Interface between Khronos rendering APIs such as OpenGL ES and the underlying native platform window system.} display, which enables OpenGL to render into a surface.
 \item Accepts a user-provided Renderer object that does the actual rendering.
 \item Supports both on-demand and continuous rendering.
 \end{itemize}
@@ -144,7 +144,7 @@ Below, one can observe a minimal implementation of an \emph{Activity} class \cit
 
 \lstinputlisting[caption={Minimal implementation of Android's Activity class that would use GLSurfaceView.}]{./code/openglesactivity.java}
 
-To write an application beyond the basics presented above, one would have to write his own GLSurfaceView.Renderer. The renderer is responsible for making OpenGL calls to render a frame.
+To write an application beyond the basics presented above, one would have to write his own GLSurfaceView.Renderer. The Renderer is responsible for making OpenGL calls to render each frame.
 Its interface has only three methods to override:
 
 \begin{itemize}
@@ -155,13 +155,22 @@ Its interface has only three methods to override:
 
 One of the simplest implementations of GLSurfaceView.Renderer that clears the screen to black color on every frame and does not allocate any resource on Surface creation is presented below:
 
-\lstinputlisting[caption={Implementation of GLSurfaceView.Renderer that clears the screen to black on every frame.}]{./code/minimal_GLSurfaceView_Renderer.java}
+\begin{filecode}[label=lst:glsurfaceview_renderer_implementation,caption=Implementation of GLSurfaceView.Renderer that clears the screen to black on every frame.]
+\lstinputlisting{./code/minimal_GLSurfaceView_Renderer.java}
+\end{filecode}
 
-Developers using GLSurfaceView should extend this class in order to define how the application should respond to touch events (basic implementation of GLSurfaceView does not cover that). 
-\newline 
+%\lstinputlisting[caption={Implementation of GLSurfaceView.Renderer that clears the screen to black on every frame.}]{./code/minimal_GLSurfaceView_Renderer.java}
 
+Developers using GLSurfaceView should extend it in order to define how the application should respond to touch events (basic implementation of GLSurfaceView does not cover that). 
+This can be used in conjuction with user defined Renderer as presented in Listing~\ref{lst:glsurfaceview_override}.
 
+\begin{filecode}[label=lst:glsurfaceview_override,caption=Extending GLSurfaceView class to capture user input.]
+\lstinputlisting{./code/glsurfaceview_override.java}
+\end{filecode}
 
+Code from Listing~\ref{lst:glsurfaceview_override}, would clear the screen on every frame.
+When you tap on the screen, it sets the clear color based on the (x,y) coordinates of your touch event with respect to screen's corner.
+The use of \emph{queueEvent()} method allows safe communication between rendering thread and the UI thread.
 
 \pagebreak[3] 
 \subsection{WebGL}
