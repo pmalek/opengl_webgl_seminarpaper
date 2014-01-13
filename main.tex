@@ -5,7 +5,7 @@
 \usepackage{mathptmx}
 %\usepackage{newtxmath}   not available ? 
 %\usepackage{newtxtext} []  not available ?
-\usepackage[margin=30mm]{geometry}% <-------- CHANGE HERE for the global margins
+\usepackage[margin=26mm]{geometry}% <-------- CHANGE HERE for the global margins
 \usepackage[T1]{fontenc}    % Check that ÖÄÅöäå come out ok!
 \usepackage[utf8]{inputenc}
 \usepackage{graphicx}
@@ -13,18 +13,25 @@
 \usepackage{parskip}
 \usepackage{listings} % for code snippets
 \usepackage{authblk}
+\usepackage[nobottomtitles]{titlesec}
+\linespread{1.15}
 %
 % should not USE  ? 
 %\setlength{\parindent}{0mm} % Do not indent the 1st line of a paragraph.
 %\setlength{\parskip}{3mm}   % Add space between paragraphs.
+
+\newenvironment{filecode}[1][]
+  {\minipage{\linewidth}% \begin{filecode}[#1]
+   \lstset{basicstyle=\ttfamily\footnotesize,#1}}
+  {\endminipage}% \end{filecode}
 
 % defines my code style
 \input{codestyle.tex} 
 
 % Save some paper by stuffing more text on each page:
 % A4: 210mm x 297mm, approximately 35 mm margins on every side.
-\addtolength{\topmargin}{-14mm}    
-\addtolength{\textheight}{20mm}    
+\addtolength{\topmargin}{-2mm}    
+\addtolength{\textheight}{4mm}    
 %\addtolength{\oddsidemargin}{-10mm} 
 %\addtolength{\textwidth}{14mm}     
 
@@ -61,18 +68,18 @@
         Faculty of Sciences\\
         malekpatryk@gmail.com
       }
-\date{\today}         % Do not print the date on the final paper!
+\date{}%\date{\today}         % Do not print the date on the final paper!
 \maketitle
 % prevents page numbering on this page
 \thispagestyle{empty}
 
 %============================================================
 
-\vspace{5pc}
+\vspace{4pc}
 \centerline{
 \includegraphics[width=0.35\textwidth,height=0.35\textheight,keepaspectratio]{NoviSadLogoGray.jpg}
 }
-\vspace{9pc}
+\vspace{5pc}
 
 \begin{abstract}
 \label{Abstract}
@@ -97,7 +104,6 @@
 % (Sec.~\ref{sec:emphasis})
 %------------------------------------------------------------
 
-\pagebreak[3] 
 \subsection{OpenGL ES}
 
 \subsubsection{New features in OpenGL ES 3.0}
@@ -105,14 +111,28 @@
 
 \subsubsection{Interaction with OpenGL ES on Android}
 Most of the API calls using OpenGL ES on Android are the same as for the desktop version of OpenGL. 
-To start working with OpenGL ES one can require OpenGL functionality in the manifest file to exclude devices that do not support OpenGL ES in the particular version.
+To start working with OpenGL ES one can require OpenGL functionality in the manifest file to exclude devices that do not support OpenGL ES in the particular version (it is not a necessary step but it will prevent compatibility errors on devices not supporting it).
+Usage of OpenGL ES directive in manifest file is shown on Listing~\ref{lst:opengl_es_manifest}.
 
-\lstinputlisting[caption={Requesting OpenGL ES in Android Manifest file.}]{./code/manifest_require_opengles.xml}
+\lstinputlisting[label={lst:opengl_es_manifest},caption={Requesting OpenGL ES in Android Manifest file.},language=xml]{./code/manifest_require_opengles.xml}
 
-Writing an application that uses OpenGL for all or part of its rendering one would use \emph{GLSurfaceView} \cite{android_glsurfaceview} as a base for its application.
-It is a specialized view container that enables rendering with use of OpenGL calls on devices with Android OS where \emph{GLSurfaceView.Renderer} controls what is drawn on that view.
+%\begin{filecode}[label=lst:opengl_es_manifest,caption=Requesting OpenGL ES in Android Manifest file.]
+%  \lstinputlisting{./code/manifest_require_opengles.xml}
+%\end{filecode}
 
-GLSurfaceView among many other supplies the following features:
+One can also check what version is supported on the device by using the code snippet from Listing~\ref{lst:check_opengl_es_version}.
+
+\begin{filecode}[label=lst:check_opengl_es_version,caption=Checking OpenGL ES version support on the device.]
+  \lstinputlisting{./code/check_opengl_es_version.java}
+\end{filecode}
+
+%\lstinputlisting[float=ht,label={lst:check_opengl_es_version},caption={Checking OpenGL ES version support on the device.}]{./code/check_opengl_es_version.java}
+
+Writing an application that uses OpenGL for all or part of its rendering, one would use \emph{GLSurfaceView} (an implementation of \emph{SurfaceView} that uses the dedicated surface for displaying OpenGL rendering) \cite{android_glsurfaceview} as a base for its application.
+It is also possible to implement OpenGL applications with \emph{TextureView} (good for partial OpenGL rendering in one's applications) or Android's SurfaceView but it would require a little bit more of additional code.
+\newline GLSurfaceView is a specialized \emph{View} container that enables rendering with use of OpenGL calls on devices with Android OS where \emph{GLSurfaceView.Renderer} controls what is being drawn on that view.
+
+GLSurfaceView among many others, supplies the following features:
 \begin{itemize}
 \item Manages a surface, which is a special piece of memory that can be composited into the Android view system.
 \item Manages an EGL display, which enables OpenGL to render into a surface.
@@ -120,13 +140,26 @@ GLSurfaceView among many other supplies the following features:
 \item Supports both on-demand and continuous rendering.
 \end{itemize}
 
-Below, one can observe a minimal implementation that would allow interaction with GLSurfaceView.
+Below, one can observe a minimal implementation of an \emph{Activity} class \cite{android_activity} that would allow interaction with GLSurfaceView.
 
-\lstinputlisting[caption={Minimal implementation of Android's \emph{Activity class} \cite{android_activity} that would use GLSurfaceView.}]{./code/openglesactivity.java}
+\lstinputlisting[caption={Minimal implementation of Android's Activity class that would use GLSurfaceView.}]{./code/openglesactivity.java}
 
-One can also check what version is supported on the device with adding this to the code snippet presented above:
+To write an application beyond the basics presented above, one would have to write his own GLSurfaceView.Renderer. The renderer is responsible for making OpenGL calls to render a frame.
+Its interface has only three methods to override:
 
-\lstinputlisting[caption={Checking OpenGL ES version support on the device.}]{./code/check_opengl_es_version.java}
+\begin{itemize}
+\item \emph{onSurfaceCreated()} which is called at the start of rendering, and whenever the OpenGL ES drawing context has to be recreated (the drawing context is typically lost and recreated when the activity is paused and resumed),
+\item \emph{onSurfaceChanged()} method is called when the surface changes size. It's a good place to set your OpenGL viewports, or cameras,
+\item \emph{onDrawFrame()} method is called every frame, and it is responsible for drawing the scene. You would typically start by calling glClear to clear the framebuffer, followed by other OpenGL ES calls to draw the current scene's objects, primitives, etc.
+\end{itemize}
+
+One of the simplest implementations of GLSurfaceView.Renderer that clears the screen to black color on every frame and does not allocate any resource on Surface creation is presented below:
+
+\lstinputlisting[caption={Implementation of GLSurfaceView.Renderer that clears the screen to black on every frame.}]{./code/minimal_GLSurfaceView_Renderer.java}
+
+Developers using GLSurfaceView should extend this class in order to define how the application should respond to touch events (basic implementation of GLSurfaceView does not cover that). 
+\newline 
+
 
 
 
