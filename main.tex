@@ -17,15 +17,15 @@
 \linespread{1.1}
 \usepackage[bottom]{footmisc}
 \usepackage{appendix}
+\usepackage{perpage} %the perpage package
+\MakePerPage{footnote} %the perpage package command
 %
 % should not USE  ? 
 %\setlength{\parindent}{10mm} % Do not indent the 1st line of a paragraph.
 %\setlength{\parskip}{20mm}   % Add space between paragraphs.
 
-\newenvironment{filecode}[1][]
-  {\minipage{\linewidth}% \begin{filecode}[#1]
-   \lstset{basicstyle=\ttfamily\footnotesize,#1}}
-  {\endminipage}% \end{filecode}
+% defined new environments
+\input{./tex_files/environments.tex}
 
 % defines my code style
 \input{codestyle.tex} 
@@ -36,18 +36,6 @@
 \addtolength{\textheight}{2mm}    
 %\addtolength{\oddsidemargin}{-10mm} 
 %\addtolength{\textwidth}{14mm}     
-
-\renewenvironment{abstract}
-{\itshape \small
-  \begin{center}
-  \bfseries \abstractname\vspace{-.5em}\vspace{0pt}
-  \end{center}
-  \list{}{
-    \setlength{\leftmargin}{1.5cm}%
-    \setlength{\rightmargin}{\leftmargin}%
-  }%
-  \item\relax}
-{\endlist}
 
 % This creates the header.
 \makeatletter
@@ -86,7 +74,6 @@
 \begin{abstract}
 \label{Abstract}
 \input{./tex_files/abstract}
-\pagebreak
 
 %============================================================
 
@@ -94,32 +81,47 @@
 
 %============================================================
 
+\pagebreak
 \section{Introduction} 
 \input{./tex_files/introduction.tex}
 
 %============================================================
 
-\section{OpenGL ES \& WebGL}
+\section{OpenGL ES}
 
-
-\subsection{OpenGL ES}
-
-\subsubsection{New features in OpenGL ES 3.0}
+\subsection{New features in OpenGL ES 3.0}
 \input{./tex_files/new_funct_opengles_3.tex}
 
-\subsubsection{Interaction with OpenGL ES on Android}
+\subsection{Interaction with OpenGL ES on Android}
 \input{./tex_files/opengles_interaction.tex}
-
-\subsection{WebGL}
 
 %============================================================
 
-\clearpage 
-\section{Programming Examples} 
+\section{WebGL}
 
-In this section we will try to demonstrate the power of OpenGL ES API 
+\subsection{WebGL features}
 
-\lstinputlisting[caption={Exemplar piece of code in Java using OpenGL ES API}]{code/example1.java}
+\begin{itemize}
+\item Image loading. Although numerous image loading facilities have been developed for OpenGL, no current standard exists. A WebGL app can simply use the browser's image loading facilities directly,
+\item Event handling. WebGL uses the standard browser event handling mechanism. A WebGL application can set a callback function on any JavaScript event. See Handling Events for code that passes mouse events to a camera controller,
+\item Seamless compositing of web content. WebGL uses the standard <canvas> element, which is automatically integrated with the other elements on the web page,
+\item Automatic memory management - in OpenGL, memory is explicitly allocated and deallocated. In WebGL, memory management is handled automatically,
+\item WebGL application can take advantage of the JavaScript infrastructure and Document Object Model (DOM) fundamental to any HTML document,
+\end{itemize}
+This is a chapter about WebGL
+
+\subsection{Interaction with WebGL}
+
+WebGL can be reffered to as one of the easiest 3D API to use.
+In contrast to other APIs one does not have to worry about makefiles, includes, linking the libraries etc. 
+While programming with WebGL all you need to do is create the Canvas element and get a context as shown in Listing~\ref{lst:webgl_create_canvas}.
+
+\begin{filecode}[language=JavaScript,
+label=lst:webgl_create_canvas,
+caption=Create Canvas element and get the context for rendering.
+]
+  \lstinputlisting{./code/webgl_create_canvas.js}
+\end{filecode}
 
 %============================================================
 

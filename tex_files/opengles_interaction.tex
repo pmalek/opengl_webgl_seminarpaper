@@ -42,8 +42,17 @@ Its interface has only three methods to override:
 \end{itemize}
 
 \pagebreak[3]
-One of the simplest implementations of GLSurfaceView.Renderer that clears the screen to black color on every frame and does not allocate any resource on Surface creation is presented below:
-\lstinputlisting[caption={Implementation of GLSurfaceView.Renderer that clears the screen to black on every frame.}]{./code/minimal_GLSurfaceView_Renderer.java}
+One of the simplest implementations of GLSurfaceView.Renderer that clears the screen to black color on every frame and does not allocate any resource on Surface creation is presented in Listing~\ref{lst:glsurfaceview_renderer_implementation}.
+\lstinputlisting[label={lst:glsurfaceview_renderer_implementation},caption={Implementation of GLSurfaceView.Renderer that clears the screen to black on every frame.}]{./code/minimal_GLSurfaceView_Renderer.java}
+
+\begin{note}
+{One may wonder why would these methods have a \emph{GL10} parameter and why it is referred to as \emph{glUnused}, when OpenGL ES 2.0/3.0 APIs is being used.
+These method signatures are simply reused for the 2.0/3.0 APIs to keep Android framework code simpler.
+They are not used when drawing witih OpenGL ES 2.0/3.0.
+Instead, static methods of \emph{GLES20}/\emph{GLES30} classes are used.
+GL10 parameter is only there to use the same itnerface for OpenGL ES 1.x.
+}
+\end{note}
 
 %\begin{filecode}[label=lst:glsurfaceview_renderer_implementation,caption=Implementation of GLSurfaceView.Renderer that clears the screen to black on every frame.]
 %\lstinputlisting{./code/minimal_GLSurfaceView_Renderer.java}
