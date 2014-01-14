@@ -1,3 +1,7 @@
+import android.opengl.GLSurfaceView;
+import android.app.Activity;
+import android.os.Bundle;
+
 public class OpenGLESActivity extends Activity {
 
     private GLSurfaceView mGLView;

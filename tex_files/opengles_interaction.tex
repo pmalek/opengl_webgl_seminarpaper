@@ -1,0 +1,61 @@
+
+Most of the API calls using OpenGL ES on Android are the same as for the desktop version of OpenGL. 
+To start working with OpenGL ES one can require OpenGL functionality in the manifest file to exclude devices that do not support OpenGL ES in the particular version (it is not a necessary step but it will prevent compatibility errors on devices not supporting it).
+Usage of OpenGL ES directive in manifest file is shown on Listing~\ref{lst:opengl_es_manifest}.
+
+\lstinputlisting[label={lst:opengl_es_manifest},caption={Requesting OpenGL ES in Android Manifest file.},language=xml]{./code/manifest_require_opengles.xml}
+
+%\begin{filecode}[label=lst:opengl_es_manifest,caption=Requesting OpenGL ES in Android Manifest file.]
+%  \lstinputlisting{./code/manifest_require_opengles.xml}
+%\end{filecode}
+
+One can also check what version is supported on the device by using the code snippet from Listing~\ref{lst:check_opengl_es_version}.
+\begin{filecode}[label=lst:check_opengl_es_version,caption=Checking OpenGL ES version support on the device.]
+  \lstinputlisting{./code/check_opengl_es_version.java}
+\end{filecode}
+
+%\lstinputlisting[float=ht,label={lst:check_opengl_es_version},caption={Checking OpenGL ES version support on the device.}]{./code/check_opengl_es_version.java}
+
+Writing an application that uses OpenGL for all or part of its rendering, one would use \emph{GLSurfaceView} (an implementation of \emph{SurfaceView} that uses the dedicated surface for displaying OpenGL rendering) \cite{android_glsurfaceview} as a base for its application.
+It is also possible to implement OpenGL applications with \emph{TextureView} (good for partial OpenGL rendering in one's applications) or Android's SurfaceView but it would require a little bit more of additional code.
+\newline GLSurfaceView is a specialized \emph{View} container that enables rendering with use of OpenGL calls on devices with Android OS where \emph{GLSurfaceView.Renderer} controls what is being drawn on that view.
+
+GLSurfaceView among many others, supplies the following features:
+\begin{itemize}
+\item Manages a surface, which is a special piece of memory that can be composited into the Android view system.
+\item Manages an EGL\footnote{Interface between Khronos rendering APIs such as OpenGL ES and the underlying native platform window system.} display, which enables OpenGL to render into a surface.
+\item Accepts a user-provided Renderer object that does the actual rendering.
+\item Supports both on-demand and continuous rendering.
+\end{itemize}
+
+Below, one can observe a minimal implementation of an \emph{Activity} class \cite{android_activity} that would allow interaction with GLSurfaceView.
+
+\lstinputlisting[caption={Minimal implementation of Android's Activity class that would use GLSurfaceView.}]{./code/openglesactivity.java}
+
+To write an application beyond the basics presented above, one would have to write his own GLSurfaceView.Renderer. The Renderer is responsible for making OpenGL calls to render each frame.
+Its interface has only three methods to override:
+
+\begin{itemize}
+\item \emph{onSurfaceCreated()} which is called at the start of rendering, and whenever the OpenGL ES drawing context has to be recreated (the drawing context is typically lost and recreated when the activity is paused and resumed),
+\item \emph{onSurfaceChanged()} method is called when the surface changes size. It's a good place to set your OpenGL viewports, or cameras,
+\item \emph{onDrawFrame()} method is called every frame, and it is responsible for drawing the scene. One would typically start by calling \emph{glClear} to clear the framebuffer, followed by other OpenGL ES calls to draw the current scene's objects, primitives, etc.
+\end{itemize}
+
+\pagebreak[3]
+One of the simplest implementations of GLSurfaceView.Renderer that clears the screen to black color on every frame and does not allocate any resource on Surface creation is presented below:
+\lstinputlisting[caption={Implementation of GLSurfaceView.Renderer that clears the screen to black on every frame.}]{./code/minimal_GLSurfaceView_Renderer.java}
+
+%\begin{filecode}[label=lst:glsurfaceview_renderer_implementation,caption=Implementation of GLSurfaceView.Renderer that clears the screen to black on every frame.]
+%\lstinputlisting{./code/minimal_GLSurfaceView_Renderer.java}
+%\end{filecode}
+
+Developers using GLSurfaceView should extend it in order to define how the application should respond to touch events (basic implementation of GLSurfaceView does not cover that). 
+This can be used in conjuction with user defined Renderer as presented in Listing~\ref{lst:glsurfaceview_override} in Appendix~\ref{App:Appendix_A}. 
+
+%\begin{filecode}[label=lst:glsurfaceview_override,caption=Extending GLSurfaceView class to capture user input.]
+%\lstinputlisting{./code/glsurfaceview_override.java}
+%\end{filecode}
+
+Code from Listing~\ref{lst:glsurfaceview_override}, would clear the screen on every frame.
+When you tap on the screen, it sets the clear color based on the (x,y) coordinates of your touch event with respect to screen's corner.
+The use of \emph{queueEvent()} method allows safe communication between rendering thread and the UI thread.

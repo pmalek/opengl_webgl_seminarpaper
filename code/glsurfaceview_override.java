@@ -1,3 +1,11 @@
+import javax.microedition.khronos.egl.EGLConfig;
+import javax.microedition.khronos.opengles.GL10;
+import android.content.Context;
+import android.opengl.GLES20;
+import android.opengl.GLSurfaceView;
+import android.view.MotionEvent;
+import java.lang.Runnable;
+
 class ClearGLSurfaceView extends GLSurfaceView {
   public ClearGLSurfaceView(Context context) {
     super(context);
@@ -16,15 +24,15 @@ class ClearGLSurfaceView extends GLSurfaceView {
 }// end of ClearGLSurfaceView class definition
 
 class ClearRenderer implements GLSurfaceView.Renderer {
-  public void onSurfaceCreated(GL10 gl, EGLConfig config) {
+  public void onSurfaceCreated(GL10 glUnused, EGLConfig config) {
     // Do something special, e.g. allocate textures etc.
   }
-  public void onSurfaceChanged(GL10 gl, int width, int height) {
-    gl.glViewport(0, 0, width, height);
+  public void onSurfaceChanged(GL10 glUnused, int width, int height) {
+    GLES20.glViewport(0, 0, width, height);
   }
-  public void onDrawFrame(GL10 gl) {
-    gl.glClearColor(mRed, mGreen, mBlue, 1.0f);
-    gl.glClear(GL10.GL_COLOR_BUFFER_BIT | GL10.GL_DEPTH_BUFFER_BIT);
+  public void onDrawFrame(GL10 glUnused) {
+    GLES20.glClearColor(mRed, mGreen, mBlue, 1.0f);
+    GLES20.glClear(GLES20.GL_DEPTH_BUFFER_BIT | GLES20.GL_COLOR_BUFFER_BIT);
   }
   public void setColor(float r, float g, float b) {
     mRed = r;
