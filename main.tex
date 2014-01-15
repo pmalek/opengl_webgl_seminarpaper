@@ -99,21 +99,11 @@
 
 \section{WebGL}
 
-\subsection{WebGL features}
+\subsection{WebGL support in modern web browsers}
+\input{./tex_files/webgl_support.tex}
 
-Few of many WebGL's traits, features and functionalities implemented so far:
-\begin{itemize}
-\item WebGL applications can take advantage of the JavaScript infrastructure and Document Object Model (DOM\footnote{Cross-platform and language-independent convention for representing and interacting with objects in HTML, XHTML and XML documents. DOM elements can be easily addressed from e.g. scripting languages like JavaScript.}),
-\item single and half floating point textures,
-\item standard derivatives functions in shaders,
-\item Vertex Array Objects (VAOs) - OpenGL objects that store all of the state needed to supply vertex data. They store the format of the vertex data as well as the Buffer Objects providing the vertex data arrays.
-\item S3 Texture Compression (S3TC \footnote{, lossy texture compression algorithms allowing compression rates at around 4:1} - sometimes referred to as DXTn or DXTC),
-\item depth textures,
-\item anisotropic texture filtering,
-\item event handling - WebGL uses the standard browser event handling mechanism. A WebGL application can set a callback function on any JavaScript event. See Handling Events for code that passes mouse events to a camera controller,
-\item seamless compositing of web content - WebGL uses standard HTML5 \emph{<canvas>} element, which is automatically integrated with the other elements on the web page,
-\item automatic memory management - in OpenGL, memory is explicitly allocated and deallocated. In WebGL, memory management is handled automatically,
-\end{itemize}
+\subsection{WebGL features}
+\input{./tex_files/webgl_features.tex}
 
 \subsection{Interaction with WebGL}
 
@@ -122,9 +112,18 @@ In contrast to other APIs one does not have to worry about makefiles, includes, 
 While programming with WebGL all you need to do is create the Canvas element and get a context as shown in Listing~\ref{lst:webgl_create_canvas}.
 
 \begin{filecode}[language=JavaScript,label=lst:webgl_create_canvas,
-caption=Create Canvas element and getthe context for rendering with WebGL.]
+caption=Create Canvas element and get the context for rendering with WebGL.]
   \lstinputlisting{./code/webgl_create_canvas.js}
 \end{filecode}
+
+After using the code in Listing~\ref{lst:webgl_create_canvas} one can observe in current's webpage DOM the <canvas> element that can be  used for WebGL rendering.
+
+\begin{filecode}[language=JavaScript,label=lst:webgl_square,
+caption=Drawing a square using WebGL.]
+  \lstinputlisting{./code/webgl_square.js}
+\end{filecode}
+
+
 
 %============================================================
 
@@ -147,7 +146,7 @@ caption=Create Canvas element and getthe context for rendering with WebGL.]
 
 \section{Extending GLSurfaceView class to capture user input.}
 \label{App:Appendix_A}
-\begin{filecode}[label=lst:glsurfaceview_override,caption=Extending GLSurfaceView class to capture user input.]
+\begin{filecode}[label=lst:glsurfaceview_override]
 \lstinputlisting{./code/opengles_glsurfaceview_override.java}
 \end{filecode}
 

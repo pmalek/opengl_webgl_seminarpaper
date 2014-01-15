@@ -1,0 +1,15 @@
+Few of many WebGL's traits, features and functionalities implemented so far:
+\begin{itemize}
+\item WebGL applications can take advantage of the JavaScript infrastructure and Document Object Model (DOM\footnote{Cross-platform and language-independent convention for representing and interacting with objects in HTML, XHTML and XML documents. DOM elements can be easily addressed from e.g. scripting languages like JavaScript.}),
+\item single and half floating point textures,
+\item standard derivatives functions in shaders,
+\item Vertex Array Objects (VAOs) - OpenGL objects that store all of the state needed to supply vertex data. They store the format of the vertex data as well as the Buffer Objects providing the vertex data arrays.
+\item S3 Texture Compression (S3TC \footnote{Lossy texture compression algorithms for three or four color channel textures. In contrast to JPEG and PNG it can achieve smaller compression rates but it allows particular section of images to be decompressed separately, useful with big textures.} - sometimes referred to as DXTn or DXTC),
+\item depth textures,
+\item anisotropic texture filtering,
+\item event handling - WebGL uses the standard browser event handling mechanism. A WebGL application can set a callback function on any JavaScript event. See Handling Events for code that passes mouse events to a camera controller,
+\item seamless compositing of web content - WebGL uses standard HTML5 \emph{<canvas>} element, which is automatically integrated with the other elements on the web page,
+\item automatic memory management - in OpenGL, memory is explicitly allocated and deallocated. In WebGL, memory management is handled automatically,
+\item WebGL extensions to the core WebGL API - most of these extensions are incorporated directly from the OpenGL ES or OpenGL extension registries.
+WebGL extensions are specified as Web IDL\footnote{Interface Definition Language is a specification language used to describe software component's interface. It allows language-independent communication between software components written in different languages.} interfaces.
+\end{itemize}
