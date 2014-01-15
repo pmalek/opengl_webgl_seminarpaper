@@ -1,4 +1,4 @@
-% To produce Postscript and PDF:
+%	To produce Postscript and PDF:
 %    latex template; latex template; 
 %    dvips -o template.ps template; ps2pdf template.ps
 \documentclass[a4paper,11pt]{article}
@@ -16,7 +16,7 @@
 \usepackage[nobottomtitles]{titlesec}
 \linespread{1.1}
 \usepackage[bottom]{footmisc}
-\usepackage{appendix}
+\usepackage[title]{appendix}
 \usepackage{perpage} %the perpage package
 \MakePerPage{footnote} %the perpage package command
 %
@@ -28,7 +28,7 @@
 \input{./tex_files/environments.tex}
 
 % defines my code style
-\input{codestyle.tex} 
+\input{./tex_files/codestyle.tex} 
 
 % Save some paper by stuffing more text on each page:
 % A4: 210mm x 297mm, approximately 35 mm margins on every side.
@@ -90,7 +90,7 @@
 \section{OpenGL ES}
 
 \subsection{New features in OpenGL ES 3.0}
-\input{./tex_files/new_funct_opengles_3.tex}
+\input{./tex_files/opengles_new_funct_3.tex}
 
 \subsection{Interaction with OpenGL ES on Android}
 \input{./tex_files/opengles_interaction.tex}
@@ -101,14 +101,19 @@
 
 \subsection{WebGL features}
 
+Few of many WebGL's traits, features and functionalities implemented so far:
 \begin{itemize}
-\item Image loading. Although numerous image loading facilities have been developed for OpenGL, no current standard exists. A WebGL app can simply use the browser's image loading facilities directly,
-\item Event handling. WebGL uses the standard browser event handling mechanism. A WebGL application can set a callback function on any JavaScript event. See Handling Events for code that passes mouse events to a camera controller,
-\item Seamless compositing of web content. WebGL uses the standard <canvas> element, which is automatically integrated with the other elements on the web page,
-\item Automatic memory management - in OpenGL, memory is explicitly allocated and deallocated. In WebGL, memory management is handled automatically,
-\item WebGL application can take advantage of the JavaScript infrastructure and Document Object Model (DOM) fundamental to any HTML document,
+\item WebGL applications can take advantage of the JavaScript infrastructure and Document Object Model (DOM\footnote{Cross-platform and language-independent convention for representing and interacting with objects in HTML, XHTML and XML documents. DOM elements can be easily addressed from e.g. scripting languages like JavaScript.}),
+\item single and half floating point textures,
+\item standard derivatives functions in shaders,
+\item Vertex Array Objects (VAOs) - OpenGL objects that store all of the state needed to supply vertex data. They store the format of the vertex data as well as the Buffer Objects providing the vertex data arrays.
+\item S3 Texture Compression (S3TC \footnote{, lossy texture compression algorithms allowing compression rates at around 4:1} - sometimes referred to as DXTn or DXTC),
+\item depth textures,
+\item anisotropic texture filtering,
+\item event handling - WebGL uses the standard browser event handling mechanism. A WebGL application can set a callback function on any JavaScript event. See Handling Events for code that passes mouse events to a camera controller,
+\item seamless compositing of web content - WebGL uses standard HTML5 \emph{<canvas>} element, which is automatically integrated with the other elements on the web page,
+\item automatic memory management - in OpenGL, memory is explicitly allocated and deallocated. In WebGL, memory management is handled automatically,
 \end{itemize}
-This is a chapter about WebGL
 
 \subsection{Interaction with WebGL}
 
@@ -116,10 +121,8 @@ WebGL can be reffered to as one of the easiest 3D API to use.
 In contrast to other APIs one does not have to worry about makefiles, includes, linking the libraries etc. 
 While programming with WebGL all you need to do is create the Canvas element and get a context as shown in Listing~\ref{lst:webgl_create_canvas}.
 
-\begin{filecode}[language=JavaScript,
-label=lst:webgl_create_canvas,
-caption=Create Canvas element and get the context for rendering.
-]
+\begin{filecode}[language=JavaScript,label=lst:webgl_create_canvas,
+caption=Create Canvas element and getthe context for rendering with WebGL.]
   \lstinputlisting{./code/webgl_create_canvas.js}
 \end{filecode}
 
@@ -145,7 +148,7 @@ caption=Create Canvas element and get the context for rendering.
 \section{Extending GLSurfaceView class to capture user input.}
 \label{App:Appendix_A}
 \begin{filecode}[label=lst:glsurfaceview_override,caption=Extending GLSurfaceView class to capture user input.]
-\lstinputlisting{./code/glsurfaceview_override.java}
+\lstinputlisting{./code/opengles_glsurfaceview_override.java}
 \end{filecode}
 
 \end{appendices}
