@@ -19,6 +19,8 @@
 \usepackage[title]{appendix}
 \usepackage{perpage} %the perpage package
 \MakePerPage{footnote} %the perpage package command
+\usepackage{varioref} %for \vref
+\usepackage{enumitem}
 %
 % should not USE  ? 
 %\setlength{\parindent}{10mm} % Do not indent the 1st line of a paragraph.
@@ -77,7 +79,7 @@
 
 %============================================================
 
-%\tableofcontents
+\tableofcontents
 
 %============================================================
 
@@ -107,27 +109,45 @@
 
 \subsection{Interaction with WebGL}
 
-WebGL can be reffered to as one of the easiest 3D API to use.
+WebGL can be referred to as one of the easiest 3D API to use.
 In contrast to other APIs one does not have to worry about makefiles, includes, linking the libraries etc. 
-While programming with WebGL all you need to do is create the Canvas element and get a context as shown in Listing~\ref{lst:webgl_create_canvas}.
+WebGL applications consist of control code written in JavaScript and special effects code (shader code) that is executed on a computer's Graphics Processing Unit (GPU).
+The first thing one will need in order to use WebGL to render in 3D is to retrieve from the DOM (or create dynamically) the Canvas element and to get a context as shown in Listing~\vref{lst:webgl_create_canvas}.
 
 \begin{filecode}[language=JavaScript,label=lst:webgl_create_canvas,
 caption=Create Canvas element and get the context for rendering with WebGL.]
   \lstinputlisting{./code/webgl_create_canvas.js}
 \end{filecode}
 
-After using the code in Listing~\ref{lst:webgl_create_canvas} one can observe in current's webpage DOM the <canvas> element that can be  used for WebGL rendering.
+After using the code in Listing~\ref{lst:webgl_create_canvas} one can observe in current webpage's DOM the <canvas> element (if it hasn't been created before) that can be used for WebGL rendering.
+Normally one would define other parameters after getting WebGL context, like e.g.:
 
-\begin{filecode}[language=JavaScript,label=lst:webgl_square,
-caption=Drawing a square using WebGL.]
-  \lstinputlisting{./code/webgl_square.js}
-\end{filecode}
+\begin{itemize}[leftmargin=0.4cm]
+\item \texttt{gl.clearColor(0.0, 0.0, 0.0, 1.0)} - set context's clearing color (black was used in here),
+\item \texttt{gl.enable(gl.DEPTH\_TEST)} - enable depth testing,
+\item \texttt{gl.depthFunc(gl.LEQUAL)} - set depth function so that near objects hide the further placed objects,
+\item \texttt{gl.clear(gl.COLOR\_BUFFER\_BIT|gl.DEPTH\_BUFFER\_BIT)} - \newline clear the color (to the value set with \texttt{clearColor}) as well as the depth buffer (set with \texttt{depthFunc}),
+\end{itemize} 
 
+WebGL manages a rectangular viewport (almost the same as in OpenGL since it was derived from it) as part of its state which defines the placement of the rendering results in the drawing buffer.
+It can be referred to as the area of one's canvas that the rendering will be drawn on. 
+A newly created WebGL context will set its viewport resolution to the height and width of its canvas element, without any scripting, HTML or CSS, at the instant the context was obtained 
+Editing the style of a canvas element (e.g. width and height) will change its displayed size but will not change its rendering resolution.
+Editing those attributes of a canvas element after the context has been created will also not change the number of pixels to be drawn.
+To change the resolution which WebGL renders at, such as when the user resizes the window or the resolution change in adjustable graphics settings, one will need to call WebGL context's \texttt{viewport()} function to acknowledge the change.
+Changing the viewport for WebGL is as simple as calling \texttt{gl.viewport(x, y, width, height)}; with (x,y) being the positions of the viewport and (width, height) the size of the viewport. 
+Most of the time those variables describing new size of the viewport will match the dimensions of one's canvas, but there are some scenarios where one would only want to draw a part of it (for instance split-screen gaming).
 
+To decide what and how will be lit on the scene that one try to render with WebGL and what colors will it take, one have to provide two shaders to instruct WebGL context about colors and positions.
+A Vertex shader which provides the clipspace coordinates and a fragment shader that provides the color.
 
 %============================================================
 
 \section{Summary} 
+
+OpenGL - driver issues, doesn't run on mobiles;
+OpenGL ES  - doesn't run on desktops, doesn't run on Web;
+WebGL/HTML5 etc. isn't perfect. There are lots of issues like with any sufficiently complex technology. But I sincerely believe that WebGL is the best shot we have to bring 3D everywhere. The Web has always been about write once, run everywhere. I have been enjoying WebGL a lot, and I hope you can enjoy it too.
 
 %============================================================
 
@@ -148,6 +168,13 @@ caption=Drawing a square using WebGL.]
 \label{App:Appendix_A}
 \begin{filecode}[label=lst:glsurfaceview_override]
 \lstinputlisting{./code/opengles_glsurfaceview_override.java}
+\end{filecode}
+
+\section{WebGL square unfinished!!!!!!}
+\label{App:Appendix_B}
+\begin{filecode}[language=JavaScript,label=lst:webgl_square,
+caption=Drawing a square using WebGL.]
+  \lstinputlisting{./code/webgl_square.js}
 \end{filecode}
 
 \end{appendices}

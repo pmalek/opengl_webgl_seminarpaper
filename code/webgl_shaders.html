@@ -1,0 +1,20 @@
+<!-- vertex shader -->
+<script id="shader-vs" type="x-shader/x-vertex">
+attribute vec2 a_position;
+
+void main() {
+  gl_Position = vec4(a_position, 0, 1);
+}
+</script>
+
+<!-- fragment shader -->
+<script id="shader-fs" type="x-shader/x-fragment">
+void main() {
+  gl_FragColor = vec4(1.0,1.0,1.0,1.0);  //white
+}
+</script>
+
+<script type="text/javascript">
+var fragmentShader = getShader(gl, "shader-fs");
+var vertexShader = getShader(gl, "shader-vs");
+</script>
