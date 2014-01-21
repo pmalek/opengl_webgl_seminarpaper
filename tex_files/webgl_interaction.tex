@@ -82,8 +82,8 @@ Vertex and fragment shaders have acces to OpenGL state, therefore they have acce
 \end{itemize}
 
 To completely be able to manipulate the vertex data one will need the incoming vertex that is fed to vertex shader.
-This can be accessed by \texttt{attribute vec4 gl\_Vertex}
-With those variables' (and many others fully listed in WebGL specification) one can manipulate the vertex data in vertex shader.
+This can be accessed by \texttt{attribute vec4 gl\_Vertex}.
+With those variables (and many others fully listed in WebGL specification) one can manipulate the vertex data in vertex shader.
 Fragment shader also has access to OpenGL state so using for instance \texttt{gl\_FragColor} it can set output fragment color.
 Exemplar code of shaders is shown in Listing~\ref{lst:webgl_simple_shaders}. 
 

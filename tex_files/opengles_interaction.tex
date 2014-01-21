@@ -1,6 +1,6 @@
 
 Most of the API calls using OpenGL ES on Android are the same as for the desktop version of OpenGL. 
-To start working with OpenGL ES one can require OpenGL functionality in the manifest file to exclude devices that do not support OpenGL ES in the particular version (it is not a necessary step but it will prevent compatibility errors on devices not supporting it).
+To start working with OpenGL ES one can require OpenGL functionality in the manifest file to exclude devices that do not support OpenGL ES in the particular version (it is not a necessary step but it will prevent compatibility errors on devices that do not support it).
 Usage of OpenGL ES directive in manifest file is shown on Listing~\ref{lst:opengl_es_manifest}.
 
 \lstinputlisting[label={lst:opengl_es_manifest},caption={Requesting OpenGL ES in Android Manifest file.},language=xml]{./code/opengles_manifest_require.xml}
@@ -17,7 +17,7 @@ One can also check what version is supported on the device by using the code sni
 %\lstinputlisting[float=ht,label={lst:check_opengl_es_version},caption={Checking OpenGL ES version support on the device.}]{./code/opengles_check_version.java}
 
 Writing an application that uses OpenGL for all or part of its rendering, one would use \texttt{GLSurfaceView} (an implementation of \texttt{SurfaceView} that uses the dedicated surface for displaying OpenGL rendering) \cite{android_glsurfaceview} as a base for its application.
-It is also possible to implement OpenGL applications with \emph{TextureView} (good for partial OpenGL rendering in one's applications) or Android's SurfaceView but it would require a little bit more of additional code.
+It is also possible to implement OpenGL applications with \emph{TextureView} (good for partial OpenGL rendering in one's applications) or Android's SurfaceView but it would require some additional code.
 \newline GLSurfaceView is a specialized \emph{View} container that enables rendering with use of OpenGL calls on devices with Android OS where \texttt{GLSurfaceView.Renderer} controls what is being drawn on that view.
 
 GLSurfaceView among many others, supplies the following features:
@@ -69,5 +69,5 @@ This can be used in conjuction with user defined Renderer as presented in Append
 %\end{filecode}
 
 Code from Listing~\ref{lst:glsurfaceview_override}, would clear the screen on every frame.
-When you tap on the screen, it sets the clear color based on the (x,y) coordinates of your touch event with respect to screen's corner.
+Upon tapping on the screen, it sets the clear color based on the (x,y) coordinates of your touch event with respect to screen's corner.
 The use of \texttt{queueEvent()} method allows safe communication between rendering thread and the UI thread.
