@@ -1,0 +1,23 @@
+<script id="vertex-shader" type="x-shader/x-vertex">
+uniform mat4 gl_ModelViewMatrix;
+uniform mat4 gl_ProjectionMatrix;
+attribute vec4 gl_Vertex;
+
+void main()
+{
+	gl_Position = gl_ProjectionMatrix * gl_ModelViewMatrix * gl_Vertex;
+	//the same functionality can be applied with fixed pipeline functonality
+	//gl_Position = ftransform();
+}
+</script>
+
+<script id="fragment-shader" type="x-shader/x-fragment">
+void main() {
+  gl_FragColor = vec4(0,1,0,1);// each fragment will be filled with opaque green color
+}
+</script>
+
+<script type="text/javascript">
+var fragmentShader = getShader(gl, "fragment-shader");
+var vertexShader = getShader(gl, "vertex-shader");
+</script>
